@@ -1,0 +1,80 @@
+<p>
+  Home page below (home.component) !
+</p>
+
+<div class="container color-dark">
+  <div class="col">
+
+    <p>Add a bucket list item</p>
+  </div>
+  <div class="col">
+      <p>Your bucket list ({{ itemCount}})</p>
+  </div>
+</div>
+
+<div class="container color-light">
+ <!--   <div class="container color-light" [@goals]="goals.length"> -->
+
+  <div class="col">
+      <form>
+    <p class="sm">Use this form to add a new bucket list item</p>
+
+
+      <textarea name="item" cols="40" rows="3" placeholder="Life goal.."[(ngModel)]="goalText"></textarea>
+
+      <!-- <input type="text" class="text" name="item" placeholder="Life goal.."[(ngModel)]="goalText"> -->
+
+        <div *ngIf="goalText; else elseTextBlock">
+          <input type="submit" class="btn" [value]="submitBtnText" (click)="addItem()">
+          <button type="reset" class="removeBtn">Reset the new Item Data</button>
+          <!-- <input type="form.reset()" class="removeBtn" [value]="submitBtnText"> -->
+        </div>
+        <ng-template #elseTextBlock>
+          <br>
+          <b>Add new item and submit</b>
+        </ng-template>
+    </form>
+  </div>
+
+  <div class="col">
+
+  <form>
+
+    <p class="sm color-middle" *ngFor="let goal of goals; let i=index; trackBy: customTrackBy" >
+
+        <!-- <input name="item" *ngIf="editing[i] == 1" type="text" [(ngModel)]="goals[i]" >
+        <span *ngIf="editing[i] !== 1 ">{{goal}}</span>
+        <br>
+        <button class="updateBtn" (click)="editing[i] === 1 ? save(i) : editing[i]=1">{{editing[i] === 1 ?"Save" : "Edit"}}</button> -->
+
+        <textarea name="item" cols="40" rows="3" *ngIf="editing[i] == 1" [(ngModel)]="goals[i]"> </textarea>
+            <!-- <span *ngIf="editing[i] !== 1 ">{{goal}}</span> -->
+        <textarea name="item" cols="40" rows="3" *ngIf="editing[i] !== 1 ">{{goal}} </textarea>
+        <br>
+        <button class="updateBtn" (click)="editing[i] === 1 ? save(i) : editing[i]=1">{{editing[i]===1 ?"Save" : "Edit"}}</button>
+
+            <!-- <div>  // original example //
+                <input *ngIf="editing == 1" type="text" [(ngModel)]="name">
+                <span *ngIf="editing !==1 ">{{name}}</span>
+                <button (click)="editing === 1 ? save(1) : editing=1">{{editing===1 ?"Save" : "Edit"}}</button>
+            </div> -->
+
+        <span>&nbsp; &nbsp;</span>
+        <button class="removeBtn" (click)="removeItem(i)">Remove the Item</button>
+
+      </p>
+
+      <!-- <textarea name="item" cols="40" rows="3">{{ goal }} </textarea>
+        <!-- {{ goal }}
+        <br>
+      <button class="updateBtn" (click)="updateItem(i)">Update the Item</button>
+
+      <span>&nbsp; &nbsp;</span>
+      <button class="removeBtn" (click)="removeItem(i)">Remove the Item</button>
+    </p> -->
+
+  </form>
+  </div>
+
+</div>
+

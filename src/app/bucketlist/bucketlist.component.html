@@ -1,0 +1,32 @@
+<p>
+  Bucket List page below (bucketlist.component) !
+</p>
+
+<p><strong>Your bucket list ({{ itemCount}})</strong></p>
+
+<ul>
+  <li *ngFor="let goal of goals">
+    <div>
+      <textarea name="item" cols="40" rows="3">
+     {{ goal }}
+    </textarea>
+    </div>
+
+        <!-- <textarea name="item" cols="40" rows="3" style="margin: 0;text-align: left;display: inline-block;"> -->
+
+    <!-- <li *ngFor="let goal of goals"> -->
+      <!-- <div>
+      {{ goal }}
+    </div>  -->
+
+  </li>
+</ul>
+
+<!-- <br> -->
+
+<p>
+    <!-- <a href="" (click)="sendMeHome()"><strong>Click me back to Default Home page</strong></a> -->
+
+    <input type="submit" class="btn" [value]="backBtnText" (click)="sendMeHome()">
+</p>
+
